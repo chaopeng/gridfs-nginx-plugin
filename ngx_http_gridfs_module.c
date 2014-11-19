@@ -453,7 +453,7 @@ static ngx_int_t ngx_http_mongo_authenticate(ngx_log_t *log, ngx_http_gridfs_loc
     test = (char*)malloc( gridfs_loc_conf->db.len + sizeof(".test"));
     ngx_cpystrn((u_char*)test, (u_char*)gridfs_loc_conf->db.data, gridfs_loc_conf->db.len+1);
     ngx_cpystrn((u_char*)(test+gridfs_loc_conf->db.len),(u_char*)".test", sizeof(".test"));
-    bson_empty(&empty);
+    bson_init_empty(&empty);
     cursor = mongo_find(&mongo_conn->conn, test, &empty, NULL, 0, 0, 0);
     error =  mongo_cmd_get_last_error(&mongo_conn->conn, (char*)gridfs_loc_conf->db.data, NULL);
     free(test);
