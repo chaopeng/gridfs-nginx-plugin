@@ -34,7 +34,7 @@ Make Nginx as Linux service
 2. Make sure nginx is execute file by: 
 	`chmod +x /etc/init.d/nginx`
 3. Now you can use: 
-	```
+	```{bash}
 	service nginx start
 	service nginx stop
 	service nginx restart
