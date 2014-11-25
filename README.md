@@ -12,16 +12,20 @@ Nginx 1.7.7 and Nginx-Gridfs Installation
 ===================================
 
 1. make, go to the workspace & run: 
+
 	`curl https://raw.githubusercontent.com/chaopeng/gridfs-nginx-plugin/master/install.sh | bash`
 
 2. install: 
+
 	```{bash}
 	cd nginx-dev/nginx
 	make install
 	```
+	
 	OR copy the nginx-dev/nginx/objs/nginx to replace your installed nginx
 
 3. Now your Nginx + Nginx-Gridfs is installed under: 
+
 	```{bash}
 	/usr/local/nginx - *the folder of all nginx folders*
 	/usr/local/nginx/sbin/nginx - *the nginx executable*
@@ -30,10 +34,15 @@ Nginx 1.7.7 and Nginx-Gridfs Installation
 Make Nginx as Linux service
 ===========================
 1. Add the service in /etc/init.d by: 
+
 	`sudo wget https://raw.github.com/JasonGiedymin/nginx-init-ubuntu/master/nginx -O /etc/init.d/nginx`
+	
 2. Make sure nginx is execute file by: 
+
 	`chmod +x /etc/init.d/nginx`
+	
 3. Now you can use: 
+
 	```{bash}
 	service nginx start
 	service nginx stop
@@ -44,8 +53,11 @@ Make Nginx as Linux service
 Configure Nginx to work with MongoDB Girdfs
 ===========================================
 1. Open nginx.conf by: 
+
 	`nano /usr/local/nginx/conf/nginx.conf`
+	
 2. Add the following lines: 
+
 	```
 	server {
 		listen 80;
@@ -60,6 +72,8 @@ Configure Nginx to work with MongoDB Girdfs
 		}
 	}
 	```
+	
 3. Restart nginx by: 
+
 	`service nginx restart`
 
