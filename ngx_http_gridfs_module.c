@@ -44,6 +44,7 @@
 #include "mongo-c-driver/src/gridfs.h"
 #include <signal.h>
 #include <stdio.h>
+#include <time.h>
 
 #define MONGO_MAX_RETRIES_PER_REQUEST 1
 #define MONGO_RECONNECT_WAITTIME 500 //ms
@@ -90,6 +91,7 @@ typedef struct {
     ngx_str_t name;
     mongo conn;
     ngx_array_t *auths; /* ngx_http_mongo_auth_t */
+    int last_time;
 } ngx_http_mongo_connection_t;
 
 /* Maybe we should store a list of addresses instead. */
@@ -844,7 +846,8 @@ static ngx_int_t ngx_http_gridfs_handler(ngx_http_request_t* request) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
 
-    if (mongo_conn->conn.connected == 0) {
+    int now = time((time_t*)NULL);
+    if (now - mongo_conn->last_time > 60 || mongo_conn->conn.connected == 0) {
         if (ngx_http_mongo_reconnect(request->connection->log, mongo_conn) == NGX_ERROR) {
             ngx_log_error(NGX_LOG_ERR, request->connection->log, 0,
                           "Could not connect to mongo: \"%V\"", &gridfs_conf->mongo);
@@ -858,6 +861,7 @@ static ngx_int_t ngx_http_gridfs_handler(ngx_http_request_t* request) {
             return NGX_HTTP_SERVICE_UNAVAILABLE;
         }
     }
+    mongo_conn->last_time = now;
 
     // ---------- RETRIEVE KEY ---------- //
 
