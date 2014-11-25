@@ -15,12 +15,10 @@ Nginx 1.7.7 and Nginx-Gridfs Installation
 `curl https://raw.githubusercontent.com/chaopeng/gridfs-nginx-plugin/master/install.sh | bash`
 
 2. install: 
-
 ```{bash}
 cd nginx-dev/nginx
 make install
 ```
-
 OR copy the nginx-dev/nginx/objs/nginx to replace your installed nginx
 
 3. Now your Nginx + Nginx-Gridfs is installed under: 
