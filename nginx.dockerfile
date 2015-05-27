@@ -2,7 +2,7 @@
 # Tengine dockerfile base CentOS:latest
 # plugins:
 #   - nginx-md5
-#   - nginx-gridfs  
+#   - nginx-gridfs
 
 FROM centos:latest
 MAINTAINER Chao<chaopeng@chaopeng.me>
@@ -16,8 +16,7 @@ RUN git clone https://github.com/alibaba/tengine.git
 # nginx-gridfs
 RUN git clone https://github.com/chaopeng/gridfs-nginx-plugin.git
 RUN cd gridfs-nginx-plugin && \
-  git submodule init && \
-  git submodule update
+  git clone https://github.com/eagleas/mongo-c-driver.git
 
 RUN cd tengine && \
 ./configure  --with-cc-opt="-Wno-sign-compare -Wno-unused-variable" \
@@ -30,9 +29,7 @@ RUN cd tengine && \
 make -j8 && \
 make install
 
-
 CMD ["/usr/local/nginx/sbin/nginx"]
 
 EXPOSE 80
 EXPOSE 443
-

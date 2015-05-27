@@ -7,6 +7,5 @@ git clone https://github.com/nginx/nginx.git
 git clone https://github.com/chaopeng/gridfs-nginx-plugin.git
 
 cd gridfs-nginx-plugin
-git submodule init
-git submodule update
+git clone https://github.com/eagleas/mongo-c-driver.git
 ./build.sh
