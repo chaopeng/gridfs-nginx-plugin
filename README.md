@@ -1,11 +1,12 @@
 gridfs-nginx-plugin
 ===================
 
+**Notice: Since I left [inthechat](http://inthechat.com/), this repo will be no more maintaince.**
+
 gridfs-nginx plugin that works for real!!
 
 This is a fork from [barakav/gridfs-nginx-plugin](https://github.com/barakav/gridfs-nginx-plugin)
 
-I provide this from our company's development department
 after compiling and bug fixing in all of the components in this project.
 
 Nginx 1.7.7 and Nginx-Gridfs Installation
